@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Generic" >
+	<sql id="findAll">
+		SELECT 
+			*
+		FROM ${tableName} 
+	</sql>
+	
+	<sql id="insert">
+		<choose>
+			<when test="value == null">
+				INSERT INTO ${tableName} 
+				<include refid="${fieldNames}"></include>
+				VALUES 
+				<include refid="${valueName}"></include>
+			</when>
+			<otherwise>
+				UPDATE ${tableName}
+				<trim prefix="SET" suffixOverrides=",">
+					<include refid="${updateFieldName}"></include>
+				</trim>
+				where ${fieldName} = '${value}'
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<sql id="get">
+		SELECT 
+			*
+		FROM ${tableName} where 1=1
+		<choose>
+			<when test="fieldName==null">
+				<foreach item="item" index="index" collection="param">
+			    	${item.andOr} ${index} ${item.operator} '${item.value}'
+				</foreach>
+			</when>
+			<otherwise>
+				 and ${fieldName} = '${value}'
+			</otherwise>
+		</choose>
+		
+		
+	</sql>
+	
+	<sql id="delete">
+		DELETE
+		FROM ${tableName} where ${fieldName} = '${value}'
+	</sql>
+</mapper>

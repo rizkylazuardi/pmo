@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.anabatic.usm.persistence.dao.UserMapper">
+	<cache />
+	
+	<sql id="fieldNames">
+		(userid,"isActive","isLogin")
+	</sql>
+	<sql id="valueName">
+		(#{userid},#{isActive},#{isLogin})
+	</sql>
+	<sql id="updateFieldName">
+				userid = #{userid},
+				"isActive" = #{isActive},
+				"isLogin" = #{isLogin}
+	</sql>
+	<select id="findAll" resultType="CoreUser">
+		<include refid="Generic.findAll"></include>
+	</select>
+	<insert id="insert" >
+		<include refid="Generic.insert">
+			<property name="fieldNames" value="com.anabatic.usm.persistence.dao.UserMapper.fieldNames"/>
+			<property name="valueName" value="com.anabatic.usm.persistence.dao.UserMapper.valueName"/>
+			<property name="updateFieldName" value="com.anabatic.usm.persistence.dao.UserMapper.updateFieldName"/>
+		</include>
+	</insert>
+	<select id="get" resultType="CoreUser">
+		<include refid="Generic.get"></include>
+	</select>
+	<delete id="delete">
+		<include refid="Generic.delete"></include>
+	</delete>
+	<update id="updateShowBalance">
+		update core_user set "showBalance" = #{showBalance} where userid = '${userid}'
+	</update>
+	<update id="updateLanguage">
+		update core_user set "language" = #{language} where userid = '${userid}'
+	</update>
+	
+	<select id="getCountUser" resultType="java.lang.Integer">
+		select count(1) from core_user 
+	</select>
+</mapper>
