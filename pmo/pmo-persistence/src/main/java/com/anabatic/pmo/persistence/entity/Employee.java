@@ -1,13 +1,15 @@
 package com.anabatic.pmo.persistence.entity;
 
+import com.anabatic.usm.persistence.entity.CoreUser;
 
-public class Employee extends BaseModel{
+
+public class Employee extends CoreUser{
 	
 	private static final long serialVersionUID = 571233452306262158L;
 	private Long id;
 	private String nik;
 	private String title;
-	public String group;
+	public Long groupId;
 	
 	public Long getId() {
 		return id;
@@ -39,13 +41,12 @@ public class Employee extends BaseModel{
 	}
 
 
-	public String getGroup() {
-		return group;
+	public Long getGroupId() {
+		return groupId;
 	}
 
 
-	public void setGroup(String group) {
-		this.group = group;
+	public void setGroupId(Long groupId) {
+		this.groupId = groupId;
 	}
-
 }
