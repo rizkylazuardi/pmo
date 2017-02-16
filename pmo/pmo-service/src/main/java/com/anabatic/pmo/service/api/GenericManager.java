@@ -17,4 +17,5 @@ public interface GenericManager<T> {
 	void insert(T record);
 	T get(T object);
 	void delete(T object);
+	void softDelete(T object);
 }

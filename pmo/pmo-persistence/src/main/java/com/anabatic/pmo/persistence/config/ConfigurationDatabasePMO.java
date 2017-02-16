@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Scope;
  */
 @Configuration
 @PropertySource("classpath:jdbc.properties")
-public class ConfigurationDatabase {
+public class ConfigurationDatabasePMO {
 	
 	@Value("${jdbc.driver}")
 	public String jdbc_driver;
@@ -25,7 +25,7 @@ public class ConfigurationDatabase {
 	@Value("${jdbc.password}")
 	public String jdbc_password;
 	
-	@Bean
+	@Bean(name="pmoConfig")
 	@Scope(scopeName=ConfigurableBeanFactory.SCOPE_SINGLETON)
 	public DataConfig dataConfig(){
 		DataConfig dataConfig = new DataConfig();

@@ -21,7 +21,7 @@ public class HibernateConnector {
     private Configuration cfg;
     private SessionFactory sessionFactory;
     @Autowired
-    ConfigurationDatabase conf;
+    ConfigurationDatabasePMO conf;
 
     private HibernateConnector() throws HibernateException {
 

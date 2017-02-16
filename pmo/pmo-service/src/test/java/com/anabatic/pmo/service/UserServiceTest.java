@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 
-import com.anabatic.pmo.persistence.config.ConfigurationDatabase;
+import com.anabatic.pmo.persistence.config.ConfigurationDatabasePMO;
 import com.sun.org.apache.xerces.internal.impl.xs.identity.Selector.Matcher;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -23,7 +23,7 @@ public class UserServiceTest {
 	 UserService userService;*/
 
 	 @Autowired
-	 ConfigurationDatabase confDb;
+	 ConfigurationDatabasePMO confDb;
 	 
 	/* @Test
 	   public void test() {

@@ -59,7 +59,7 @@ public class DataConfig {
 			log.info("password="+password);
 			sessionFactory.setDataSource(dataSource(driver, url, username, password));
 			
-			sessionFactory.setTypeAliasesPackage("com.anabatic.usm.persistence.entity");
+			sessionFactory.setTypeAliasesPackage("com.anabatic.pmo.persistence.entity");
 			sessionFactory.setConfigLocation(new ClassPathResource("sqlmap-config.xml")); 
 			
 			sqlSession = sessionFactory.getObject();

@@ -9,10 +9,66 @@
   </parent>
   <artifactId>pmo-api</artifactId>
   <name>pmo-api</name>
+  <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+            </plugin>
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>2.4</version>
+                    <configuration>
+                        <descriptorRefs>
+                            <descriptorRef>jar-with-dependencies</descriptorRef>
+                        </descriptorRefs>
+                        <archive>
+                            <manifest>
+                                <mainClass>Main</mainClass>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>make-assembly</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
   <dependencies>
 	<dependency>
 		<groupId>${project.parent.groupId}</groupId>
 		<artifactId>pmo-persistence</artifactId>
+		<version>${project.parent.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>${project.parent.groupId}</groupId>
+		<artifactId>pmo-service</artifactId>
+		<version>${project.parent.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>${project.parent.groupId}</groupId>
+		<artifactId>pmo-core</artifactId>
+		<version>${project.parent.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>${project.parent.groupId}</groupId>
+		<artifactId>pmo-businesslogic</artifactId>
 		<version>${project.parent.version}</version>
 	</dependency>
 	<dependency>
@@ -47,33 +103,3 @@
 	
   </dependencies>
 </project>
-
-<!-- <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.anabatic.usm</groupId>
-    <artifactId>anabatic-usm</artifactId>
-    <version>1.0</version>
-  </parent>
-  <artifactId>usm-api</artifactId>
-  <name>usm-api</name>
-  <url>http://maven.apache.org</url>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-  <dependencies>
-    <dependency>
-		<groupId>${project.parent.groupId}</groupId>
-		<artifactId>usm-persistence</artifactId>
-		<version>${project.parent.version}</version>
-	</dependency>
-	<dependency>
-		<groupId>${project.parent.groupId}</groupId>
-		<artifactId>usm-businesslogic</artifactId>
-		<version>${project.parent.version}</version>
-	</dependency>
-  </dependencies>
-</project>
- -->
