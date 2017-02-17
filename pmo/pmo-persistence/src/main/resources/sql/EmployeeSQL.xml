@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.anabatic.pmo/presistence.dao.EmployeeMapper">
+	<cache />
+
+
+	<resultMap type="Employee" id="EmployeeMap">
+		<result property="id" column="id" />
+		<result property="nik" column="nik" />
+		<result property="title" column="title" />
+		<result property="gruopId" column="grupId" />
+		<result property="city" column="city" />
+		<result property="postalCode" column="postal_code" />
+		<result property="province" column="province" />
+		<result property="streetAddress1" column="street_adress1" />
+		<result property="streetAddress2" column="street_adress2" />
+		<result property="nickname" column="nickname" />
+	</resultMap>
+
+	<sql id="fieldNames">
+		("nik","title","grupId","city","postalCode","province","streetAddres1","streetAdress2","nickname")
+	</sql>
+	<sql id="valueNames">
+		(#{nik},#{title},${grupId},#{city},${postal_code},#{province},#{streer_adress1},#{streer_adress2},#{nickname})
+	</sql>
+	<sql id="updateFieldName">
+		"nik"=#{nik},
+		"title"=#{title},
+		"grupId"=${grupId},
+		"city"=#{city},
+		"postalCode"=${postal_code},
+		"province"=#{province},
+		"streetAddres1"=#{streer_adress1},
+		"streetAdress2"=#{streer_adress2},
+		"nickname"=#{nickname}
+	</sql>
+	<select id="findAll" resultMap="EmployeeMap">
+		<include refid="Generic.findAll"></include>	
+	</select>
+	<insert id="insert">
+		<include refid="Generic.insert">
+		<property name="fieldNames" value="com.anabatic.pmo.persistence.dao.EmployeeMapper.fieldNames"/>
+			<property name="valueName" value="com.anabatic.pmo.persistence.dao.EmployeeMapper.valueName"/>
+			<property name="updateFieldName" value="com.anabatic.pmo.persistence.dao.EmployeeMapper.updateFieldName"/>
+		</include>
+	</insert>
+	
+
+
+
+
+
+</mapper>
