@@ -65,10 +65,9 @@ public class EmployeeGroupTest {
 	}
 
 	@Before
-	public void init() {
-		service.openDB();
 
-		// inisialisasi object
+	public void init(){
+		//inisialisasi object
 		beforeAdd();
 		beforeEdit();
 	}
@@ -131,9 +130,10 @@ public class EmployeeGroupTest {
 			param.setId(165L);
 
 			EmployeeGroup data = service.getById(param);
-			if (data == null) {
+			if(data == null){
 				Assert.fail("Employee Group not found , or you have not change paramter id");
 			}
+			System.out.println(data.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 			MatcherAssert.assertThat(e, Matchers.equalTo(null));// we expect
@@ -203,8 +203,9 @@ public class EmployeeGroupTest {
 	}
 
 	@After
-	public void finaly() {
-		service.closeDB();
+
+	public void finaly(){
+		//service.closeDB();
 	}
 
 }

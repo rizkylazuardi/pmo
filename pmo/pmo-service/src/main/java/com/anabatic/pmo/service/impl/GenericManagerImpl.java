@@ -3,6 +3,8 @@ package com.anabatic.pmo.service.impl;
 import java.io.Serializable;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,85 +19,48 @@ import com.anabatic.pmo.service.api.GenericManager;
 
 public class GenericManagerImpl<PK extends Serializable,M extends GenericMapper<T, PK>	 , T>  implements GenericManager<T> {
 	
-	@Autowired
-	ConfigurationDatabasePMO confDB;
-	
-	protected SqlSession sqlSession = null;
-	
-	protected Class<M> clazz =  null;
-	protected M dao  = null;
-	
-	public GenericManagerImpl(Class<M> clazz){
-		this.clazz = clazz;
-	}
-	
-	
-	
-	public void openDB() {
-		sqlSession = confDB.dataConfig().getInstance().openSession();
-		this.dao = this.sqlSession.getMapper(clazz);
-	}
+	/**
+     * Log variable for all child classes. Uses LogFactory.getLog(getClass()) from Commons Logging
+     */
+    protected final Log log = LogFactory.getLog(getClass());
 
-	public void closeDB() {
-		sqlSession.close();
-	}
+    /**
+     * GenericDao instance, set by constructor of child classes
+     */
+    protected GenericMapper<T, PK> dao;
 
-	public void commitDB() {
-		sqlSession.commit();
-	}
 
-	public void rollbackDB() {
-		sqlSession.rollback();	
-	}
-	
-	@SuppressWarnings("unchecked")
+    public GenericManagerImpl() {
+    }
+
+    public GenericManagerImpl(GenericMapper<T, PK> genericDao) {
+        this.dao = genericDao;
+    }
+
+	@Override
 	public List<T> findAll(T object) {
-		try {
-			object = (T) GenericObjectUtil.setGenericObjectValue(object);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		return dao.findAll(object);
 	}
 
-	@SuppressWarnings("unchecked")
+	@Override
 	public void insert(T record) {
-		try {
-			record = (T) GenericObjectUtil.setGenericObjectValue(record);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		dao.insert(record);
 	}
 
-	@SuppressWarnings("unchecked")
+	@Override
 	public T get(T object) {
-		try {
-			object = (T) GenericObjectUtil.setGenericObjectValue(object);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		return dao.get(object);
 	}
 
-	@SuppressWarnings("unchecked")
+	@Override
 	public void delete(T object) {
-		try {
-			object = (T) GenericObjectUtil.setGenericObjectValue(object);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		dao.delete(object);
 	}
-	
-	@SuppressWarnings("unchecked")
+
+	@Override
 	public void softDelete(T object) {
-		try {
-			object = (T) GenericObjectUtil.setGenericObjectValue(object,true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		dao.softDelete(object);
+		
 	}
 
 

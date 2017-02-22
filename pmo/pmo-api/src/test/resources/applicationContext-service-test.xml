@@ -10,7 +10,7 @@
     <!-- <context:component-scan base-package="com.anabatic.project" /> -->
 	<context:annotation-config />
 	<!-- Scanning @Service -->
-<!-- 	<context:component-scan base-package="com.anabatic.pmo.service" /> -->
-<!-- 	<context:component-scan base-package="com.anabatic.pmo.service.impl.EmployeValidatorImpl" /> -->
+<!-- 	<context:component-scan base-package="com.anabatic.usm.service" /> -->
+	 <bean id="employeeGroupService" class="com.anabatic.pmo.service.impl.EmployeeGroupServiceImpl" />
     	
 </beans>
