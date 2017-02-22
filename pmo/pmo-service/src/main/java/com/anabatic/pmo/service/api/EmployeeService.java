@@ -16,5 +16,7 @@ public interface EmployeeService extends GenericManager<Employee> {
 	public Employee getEmployeeByUsernameAndGrup(Object param);
 
 	public Employee getEmployeByProject(Object param);
+	
+	public Employee login(Employee param);
 
 }

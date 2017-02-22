@@ -56,4 +56,10 @@ public class EmployeeServiceImpl extends
 	public Employee getEmployeByProject(Object param) {
 		return employeeMapper.getEmployeeByProject(param);
 	}
+
+	@Override
+	public Employee login(Employee param) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
