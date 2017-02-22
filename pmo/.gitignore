@@ -1,4 +1,6 @@
-
+pmo-api/target
+pmo-api/bin
+pmo-api/logs/*
 pmo-businesslogic/target
 pmo-businesslogic/bin
 pmo-businesslogic/logs/*
