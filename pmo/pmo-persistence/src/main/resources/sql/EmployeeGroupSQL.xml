@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.anabatic.pmo.persistence.dao.EmployeeGroupMapper">
+	<cache />
+	
+	
+		<resultMap type="EmployeeGroup" id="GroupMap">
+  		<result property="id" column="id"/>
+ 	    <result property="name" column="name"/>
+ 	    <result property="description" column="descripton"/>
+  	    <result property="descriptionEn" column="description_en"/>
+  	    <result property="createdTime" column="created_time"/>
+ 		<result property="createdBy" column="created_by"/>
+ 		<result property="updatedTime" column="update_time"/>
+		<result property="updatedBy" column="update_by"/>
+ 		<result property="authoriser" column="authoriser"/>
+ 		<result property="authorizeTime" column="authorize_time"/>
+ 		<result property="status" column="status"/>
+ 		<result property="version" column="version"/>
+ </resultMap>
+ 
+ 
+	<sql id="fieldNames">
+		(name,description,description_en,"status","created_time","created_by")
+	</sql>
+	<sql id="valueName">
+		('${name}','${description}','${descriptionEn}','${status}',#{createdTime},'${createdBy}')
+	</sql>
+	<sql id="updateFieldName">
+				"name"='${name}',
+				"description"=#{description},
+				"description_en"=#{descriptionEn},
+				updated_by = '${updatedBy}',
+				updated_time = '${updatedTime}'
+	</sql>
+	<select id="findAll" resultMap="GroupMap">
+		<include refid="Generic.findAll"></include>
+	</select>
+	<insert id="insert" >
+		<include refid="Generic.insert">
+			<property name="fieldNames" value="com.anabatic.pmo.persistence.dao.EmployeeGroupMapper.fieldNames"/>
+			<property name="valueName" value="com.anabatic.pmo.persistence.dao.EmployeeGroupMapper.valueName"/>
+			<property name="updateFieldName" value="com.anabatic.pmo.persistence.dao.EmployeeGroupMapper.updateFieldName"/>
+		</include>
+	</insert>
+	<select id="get" resultMap="GroupMap">
+		<include refid="Generic.get"></include>
+	</select>
+	<delete id="delete">
+		<include refid="Generic.delete"></include>
+	</delete>
+	<update id="softDelete">
+		<include refid="Generic.softDelete"></include>
+	</update>
+	
+	<select id="getByName" resultMap="GroupMap">
+		select * from core_employee_group where name='${name}'
+	</select>
+	<select id="getById" resultMap="GroupMap">
+		select * from core_employee_group where id=#{id} and status ='LIVE'
+	</select>
+	
+	
+</mapper>

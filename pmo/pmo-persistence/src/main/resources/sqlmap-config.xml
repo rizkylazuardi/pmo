@@ -9,7 +9,7 @@
 		<setting name="lazyLoadingEnabled" value="false" />
 	</settings>
 	<mappers>
-		<mapper resource="sql/CoreUserSQL.xml"/>
+		<mapper resource="sql/EmployeeGroupSQL.xml"/>
 		<mapper resource="sql/Generic.xml"/>
 		<!-- <mapper resource="com/ati/project/persistence/sql/WidgetSQL.xml"/>
 		<mapper resource="com/ati/project/persistence/sql/Generic.xml"/>

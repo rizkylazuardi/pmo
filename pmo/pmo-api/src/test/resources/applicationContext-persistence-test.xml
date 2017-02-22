@@ -10,6 +10,8 @@
     <!-- <context:component-scan base-package="com.anabatic.project" /> -->
 	
 	<!-- Scanning @Service -->
-	<context:component-scan base-package="com.anabatic.usm.persistence" />
+	<context:component-scan base-package="com.anabatic.pmo.persistence" />
+    	
+    <context:annotation-config/>
     	
 </beans>

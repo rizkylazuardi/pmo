@@ -8,8 +8,13 @@ import java.lang.reflect.Method;
 
 
 
+
+import java.util.Date;
+
+import com.anabatic.pmo.core.enumeration.DataStatusEnum;
 import com.anabatic.pmo.persistence.annotation.IdentityAnnotation;
 import com.anabatic.pmo.persistence.annotation.TableAnnotation;
+import com.anabatic.pmo.persistence.entity.EmployeeGroup;
 import com.anabatic.pmo.persistence.entity.GenericObject;
 
 
@@ -18,6 +23,14 @@ import com.anabatic.pmo.persistence.entity.GenericObject;
  *
  */
 public class GenericObjectUtil {
+
+	
+	public static Object setGenericObjectValue(Object param,Boolean isDelete) throws Exception{
+		GenericObject genericObject = (GenericObject) param;
+		genericObject.setStatus(DataStatusEnum.HIST.name());
+		return setGenericObjectValue(genericObject);
+	}
+	
 	public static Object setGenericObjectValue(Object param) throws Exception{
 		if(param instanceof GenericObject){
 			GenericObject genericObject = (GenericObject) param;

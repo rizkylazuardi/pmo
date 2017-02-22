@@ -16,39 +16,63 @@
 		<result property="streetAddress1" column="street_adress1" />
 		<result property="streetAddress2" column="street_adress2" />
 		<result property="nickname" column="nickname" />
+		<result property="username" column="username"/>
+		<result property="name" column="name"/>
 	</resultMap>
 
 	<sql id="fieldNames">
-		("nik","title","grupId","city","postalCode","province","streetAddres1","streetAdress2","nickname")
+		("nik","title","grupId","city","postalCode","province","streetAddres1","streetAdress2","nickname","username","name")
 	</sql>
 	<sql id="valueNames">
-		(#{nik},#{title},${grupId},#{city},${postal_code},#{province},#{streer_adress1},#{streer_adress2},#{nickname})
+		(#{nik},#{title},#{grupId},#{city},#{postal_code},#{province},#{streer_adress1},#{streer_adress2},#{nickname},#{username},#{name}')
 	</sql>
 	<sql id="updateFieldName">
 		"nik"=#{nik},
 		"title"=#{title},
-		"grupId"=${grupId},
+		"grupId"=#{grupId},
 		"city"=#{city},
-		"postalCode"=${postal_code},
+		"postalCode"=#{postal_code},
 		"province"=#{province},
 		"streetAddres1"=#{streer_adress1},
 		"streetAdress2"=#{streer_adress2},
-		"nickname"=#{nickname}
+		"nickname"=#{nickname},
+		"username"=#{username},
+		"name"=#{name}
 	</sql>
 	<select id="findAll" resultMap="EmployeeMap">
-		<include refid="Generic.findAll"></include>	
+		<include refid="Generic.findAll"></include>
 	</select>
 	<insert id="insert">
 		<include refid="Generic.insert">
-		<property name="fieldNames" value="com.anabatic.pmo.persistence.dao.EmployeeMapper.fieldNames"/>
-			<property name="valueName" value="com.anabatic.pmo.persistence.dao.EmployeeMapper.valueName"/>
-			<property name="updateFieldName" value="com.anabatic.pmo.persistence.dao.EmployeeMapper.updateFieldName"/>
+			<property name="fieldNames"
+				value="com.anabatic.pmo.persistence.dao.EmployeeMapper.fieldNames" />
+			<property name="valueName"
+				value="com.anabatic.pmo.persistence.dao.EmployeeMapper.valueName" />
+			<property name="updateFieldName"
+				value="com.anabatic.pmo.persistence.dao.EmployeeMapper.updateFieldName" />
 		</include>
 	</insert>
+	<select id="get" resultMap="EmployeeMap">
+		<include refid="Generic.get"></include>
+	</select>
+	<delete id="delete">
+		<include refid="Generic.delete"></include>
+	</delete>
+	<update id="SoftDelete">
+		<include refid="Generic.softDelete"></include>
+	</update>
 	
-
-
-
+	<select id="getEmployeeByName" resultMap="EmployeeMap">
+		select *from core_Employee where name='#{name}'
+	</select>
+	
+	<select id="geEmployeeById" resultMap="EmployeeMap">
+		select * from Core_Employee where id='${id}'
+	</select>
+	
+	<select id="getEmployeeByUsernameAndGrup">
+	select * from Core_Employee where username='#{username}' where grupId='#{grupId}'
+	</select>
 
 
 </mapper>

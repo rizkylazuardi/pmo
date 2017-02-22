@@ -6,8 +6,9 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.anabatic.pmo.persistence.config.ConfigurationDatabase;
+import com.anabatic.pmo.persistence.config.ConfigurationDatabasePMO;
 import com.anabatic.pmo.persistence.dao.GenericMapper;
+import com.anabatic.pmo.persistence.entity.Employee;
 import com.anabatic.pmo.persistence.util.GenericObjectUtil;
 import com.anabatic.pmo.service.api.GenericManager;
 
@@ -17,7 +18,7 @@ import com.anabatic.pmo.service.api.GenericManager;
 public class GenericManagerImpl<PK extends Serializable,M extends GenericMapper<T, PK>	 , T>  implements GenericManager<T> {
 	
 	@Autowired
-	ConfigurationDatabase confDB;
+	ConfigurationDatabasePMO confDB;
 	
 	protected SqlSession sqlSession = null;
 	
@@ -86,4 +87,16 @@ public class GenericManagerImpl<PK extends Serializable,M extends GenericMapper<
 		}
 		dao.delete(object);
 	}
-}
+	
+	@SuppressWarnings("unchecked")
+	public void softDelete(T object) {
+		try {
+			object = (T) GenericObjectUtil.setGenericObjectValue(object,true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		dao.softDelete(object);
+	}
+
+
+	}

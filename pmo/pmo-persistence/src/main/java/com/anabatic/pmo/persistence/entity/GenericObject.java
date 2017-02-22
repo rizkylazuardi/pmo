@@ -24,6 +24,7 @@ public class GenericObject implements Serializable{
 	String fieldName;
 	Object value;
 	Boolean isGeneratedValue;
+	String status;
 	Map<String, QueryParamDto> param = new LinkedHashMap<String, QueryParamDto>();
 	
 	public Map<String, QueryParamDto> getParam() {
@@ -64,6 +65,15 @@ public class GenericObject implements Serializable{
 
 	public void setIsGeneratedValue(Boolean isGeneratedValue) {
 		this.isGeneratedValue = isGeneratedValue;
+	}
+
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	@Override

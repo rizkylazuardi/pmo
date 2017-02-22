@@ -48,4 +48,9 @@
 		DELETE
 		FROM ${tableName} where ${fieldName} = '${value}'
 	</sql>
+	
+	<sql id="softDelete">
+		update ${tableName} set status='${status}' where ${fieldName} = '${value}'
+	</sql>
+	
 </mapper>

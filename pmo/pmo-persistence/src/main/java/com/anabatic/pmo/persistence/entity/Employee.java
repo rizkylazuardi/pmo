@@ -1,20 +1,39 @@
 package com.anabatic.pmo.persistence.entity;
 
-import com.anabatic.usm.persistence.entity.CoreUser;
+import com.anabatic.pmo.persistence.annotation.TableAnnotation;
 
-public class Employee extends CoreUser {
+@TableAnnotation(tableName = "core_employee")
+public class Employee extends BaseModel {
 
 	private static final long serialVersionUID = 571233452306262158L;
 	private Long id;
 	private String nik;
 	private String title;
-	public Long groupId;
+	public String grupId;
 	public String city;
 	public String postal_code;
 	public String province;
 	public String street_adress1;
 	public String street_adress2;
-	public Long nickname;
+	public String nickname;
+	public String username;
+	public String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 	public Long getId() {
 		return id;
@@ -40,12 +59,12 @@ public class Employee extends CoreUser {
 		this.title = title;
 	}
 
-	public Long getGroupId() {
-		return groupId;
+	public String getGrupId() {
+		return grupId;
 	}
 
-	public void setGroupId(Long groupId) {
-		this.groupId = groupId;
+	public void setGrupId(String grupId) {
+		this.grupId = grupId;
 	}
 
 	public String getCity() {
@@ -88,12 +107,13 @@ public class Employee extends CoreUser {
 		this.street_adress2 = street_adress2;
 	}
 
-	public Long getNickname() {
+	public String getNickname() {
 		return nickname;
 	}
 
-	public void setNickname(Long nickname) {
+	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
+
 
 }

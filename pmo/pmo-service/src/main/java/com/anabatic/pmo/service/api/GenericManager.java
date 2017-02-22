@@ -2,6 +2,8 @@ package com.anabatic.pmo.service.api;
 
 import java.util.List;
 
+import com.anabatic.pmo.persistence.entity.Employee;
+
 /**
  * 
  * @author rizky.lazuardi
@@ -17,4 +19,5 @@ public interface GenericManager<T> {
 	void insert(T record);
 	T get(T object);
 	void delete(T object);
+	void softDelete(T object);
 }
