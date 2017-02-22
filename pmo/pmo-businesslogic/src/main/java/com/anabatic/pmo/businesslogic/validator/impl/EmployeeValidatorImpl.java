@@ -11,7 +11,7 @@ import com.anabatic.pmo.persistence.entity.Employee;
 import com.anabatic.pmo.service.api.EmployeeService;
 
 @Component
-public class EmployeeValidatotImpl extends BaseValidator<Employee> implements
+public class EmployeeValidatorImpl extends BaseValidator<Employee> implements
 		IEmployeeValidator {
 
 	@Autowired

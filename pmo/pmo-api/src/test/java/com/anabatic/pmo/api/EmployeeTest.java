@@ -68,8 +68,6 @@ public class EmployeeTest {
 
 	@Before
 	public void init() {
-		service.openDB();
-		// inisialisasi object
 		beforeAdd();
 		beforeEdit();
 	}
@@ -306,6 +304,6 @@ public class EmployeeTest {
 
 	@After
 	public void finaly() {
-		service.closeDB();
+		//service.closeDB();
 	}
 }

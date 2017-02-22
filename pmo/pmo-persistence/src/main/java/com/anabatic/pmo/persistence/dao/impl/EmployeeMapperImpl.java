@@ -1,20 +1,19 @@
-package com.anabatic.pmo.service.impl;
+package com.anabatic.pmo.persistence.dao.impl;
 
 import org.springframework.stereotype.Service;
 
 import com.anabatic.pmo.persistence.dao.EmployeeMapper;
 import com.anabatic.pmo.persistence.entity.Employee;
-import com.anabatic.pmo.service.api.EmployeeService;
 
-@Service("EmployeService")
-public class EmployeeImpl extends
+@Service("employeMapper")
+public class EmployeeMapperImpl extends
 		GenericManagerImpl<Long, EmployeeMapper, Employee> implements
-		EmployeeService {
-
-	public EmployeeImpl(Class<EmployeeMapper> clazz) {
-		super(clazz);
-		// TODO Auto-generated constructor stub
+		EmployeeMapper {
+	
+	public EmployeeMapperImpl(){
+		super(EmployeeMapper.class);
 	}
+	
 
 	@Override
 	public Employee getEmployeeByName(Object param) {
@@ -83,27 +82,22 @@ public class EmployeeImpl extends
 	}
 
 	@Override
-	public Employee getEmployeeByUsernameAndGrup(Object param) {
-		Employee result = null;
-		try {
-			result = dao.getEmployeeByProject(param);
-		} catch (Exception e) {
-			e.printStackTrace();
-			
+	public Employee getAllEmployee(Object param) {
+		// TODO Auto-generated method stub
 		return null;
-		}
-		return result;
 	}
 
 	@Override
-	public Employee getEmployeByProject(Object param) {
-		Employee result = null;
-		try {
-			result = dao.getEmployeeByProject(param);
-		} catch (Exception e) {
-			e.printStackTrace();
+	public Employee getEmployeeByUserNameAndGrup(Object param) {
+		// TODO Auto-generated method stub
 		return null;
 	}
-		return result;
+
+	@Override
+	public Employee getEmployeeByProject(Object param) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+	
 }

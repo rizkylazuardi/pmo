@@ -14,6 +14,6 @@
 
 
 	<bean id="groupValidator" class="com.anabatic.pmo.businesslogic.validator.impl.EmployeeGroupValidatorImpl" />
-	<bean id="EmployeeValidator" class="com.anabatic.pmo.businesslogic.validator.impl.EmployeeValidatorImpl" />
+	<bean id="employeeValidator" class="com.anabatic.pmo.businesslogic.validator.impl.EmployeeValidatorImpl" />
 
 </beans>

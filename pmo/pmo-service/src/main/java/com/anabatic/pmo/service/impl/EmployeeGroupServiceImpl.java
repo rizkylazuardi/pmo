@@ -10,22 +10,22 @@ import com.anabatic.pmo.service.api.EmployeeGroupService;
 @Service("employeeGroupService")
 public class EmployeeGroupServiceImpl extends GenericManagerImpl<Long, EmployeeGroupMapper, EmployeeGroup> implements EmployeeGroupService {
 
-	private EmployeeGroupMapper groupMapper;
+	private EmployeeGroupMapper employeeGroupMapper;
 	
 	@Autowired
-	public void setCoreMenuMapper(EmployeeGroupMapper groupMapper) {
-		this.groupMapper = groupMapper;
-		this.dao = groupMapper;
+	public void setEmployeeGroupMapper(EmployeeGroupMapper employeeGroupMapper) {
+		this.employeeGroupMapper = employeeGroupMapper;
+		this.dao = employeeGroupMapper;
 	}	
 
 	@Override
 	public EmployeeGroup getByName(Object param) {
-		return groupMapper.getByName(param);
+		return employeeGroupMapper.getByName(param);
 	}
 	
 	@Override
 	public EmployeeGroup getById(Object param){
-		return groupMapper.getById(param);
+		return employeeGroupMapper.getById(param);
 	}
 
 
