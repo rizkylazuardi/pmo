@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.anabatic.pmo.persistence.config.ConfigurationDatabasePMO;
 import com.anabatic.pmo.persistence.dao.GenericMapper;
+import com.anabatic.pmo.persistence.entity.Employee;
 import com.anabatic.pmo.persistence.util.GenericObjectUtil;
 import com.anabatic.pmo.service.api.GenericManager;
 
@@ -61,4 +62,6 @@ public class GenericManagerImpl<PK extends Serializable,M extends GenericMapper<
 		dao.softDelete(object);
 		
 	}
-}
+
+
+	}

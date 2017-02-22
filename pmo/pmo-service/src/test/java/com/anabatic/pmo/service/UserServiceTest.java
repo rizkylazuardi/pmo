@@ -18,7 +18,7 @@ import com.sun.org.apache.xerces.internal.impl.xs.identity.Selector.Matcher;
 @ContextConfiguration(locations = {"classpath:applicationContext-service-test.xml",
 		"classpath:applicationContext-persistence-test.xml"})
 public class UserServiceTest {
-	 /*@Autowired
+	 /*@Autowiredrole
 	 @Qualifier("userService")
 	 UserService userService;*/
 

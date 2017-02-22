@@ -2,6 +2,8 @@ package com.anabatic.pmo.service.api;
 
 import java.util.List;
 
+import com.anabatic.pmo.persistence.entity.Employee;
+
 /**
  * 
  * @author rizky.lazuardi

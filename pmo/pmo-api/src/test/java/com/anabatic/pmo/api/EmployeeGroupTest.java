@@ -2,6 +2,7 @@ package com.anabatic.pmo.api;
 
 import java.util.Date;
 import java.util.List;
+
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.After;
@@ -23,29 +24,28 @@ import com.anabatic.pmo.service.api.EmployeeGroupService;
 
 /**
  * 
- * @author rizky.lazuardi
- * junit run berdasarkan urutan nama method, nama method diberi prefix alphabet agar mudah membaca sorting
+ * @author rizky.lazuardi junit run berdasarkan urutan nama method, nama method
+ *         diberi prefix alphabet agar mudah membaca sorting
  */
-
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
 		"classpath:applicationContext-service-test.xml",
 		"classpath:applicationContext-persistence-test.xml",
-		"classpath:applicationContext-businesslogic-test.xml"})
-
+		"classpath:applicationContext-businesslogic-test.xml" })
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EmployeeGroupTest {
-	@Autowired 
+	@Autowired
 	private EmployeeGroupService service;
-	
-	@Autowired @Qualifier("groupValidator")
+
+	@Autowired
+	@Qualifier("groupValidator")
 	private IEmployeeGroupValidator validator;
-	
+
 	EmployeeGroup dataAdd = new EmployeeGroup();
 	EmployeeGroup dataEdit = new EmployeeGroup();
-	
-	public void beforeAdd(){
+
+	public void beforeAdd() {
 		dataAdd.setName("Backend");
 		dataAdd.setDescription("Backend System Developer");
 		dataAdd.setDescriptionEn("Backend System Developer");
@@ -53,8 +53,8 @@ public class EmployeeGroupTest {
 		dataAdd.setCreatedTime(new Date());
 		dataAdd.setStatus(DataStatusEnum.LIVE.name());
 	}
-	
-	public void beforeEdit(){
+
+	public void beforeEdit() {
 		dataEdit.setId(171L);
 		dataEdit.setName("Backend");
 		dataEdit.setDescription("Backend System Developer EDIT");
@@ -63,116 +63,149 @@ public class EmployeeGroupTest {
 		dataEdit.setUpdatedTime(new Date());
 		dataEdit.setStatus(DataStatusEnum.LIVE.name());
 	}
-	
+
 	@Before
+
 	public void init(){
 		//inisialisasi object
 		beforeAdd();
 		beforeEdit();
 	}
-	
+
 	@Test
-	public void a_insert(){
+	public void a_insert() {
 		try {
 			validator.validate(dataAdd);
-			if(!validator.hasError()){
+			if (!validator.hasError()) {
 				service.insert(dataAdd);
-				//check inserted data
+				// check inserted data
 				EmployeeGroup insertedData = service.getByName(dataAdd);
-				MatcherAssert.assertThat(insertedData.getName(), Matchers.equalTo(dataAdd.getName()));
-				MatcherAssert.assertThat(insertedData.getDescription(), Matchers.equalTo(dataAdd.getDescription()));
-				MatcherAssert.assertThat(insertedData.getDescriptionEn(), Matchers.equalTo(dataAdd.getDescriptionEn()));
-			}else{
-				//show in junit error
+				MatcherAssert.assertThat(insertedData.getName(),
+						Matchers.equalTo(dataAdd.getName()));
+				MatcherAssert.assertThat(insertedData.getDescription(),
+						Matchers.equalTo(dataAdd.getDescription()));
+				MatcherAssert.assertThat(insertedData.getDescriptionEn(),
+						Matchers.equalTo(dataAdd.getDescriptionEn()));
+			} else {
+				// show in junit error
 				for (String key : validator.getErrors().keySet()) {
-					Assert.fail(validator.getErrors().get(key).getDefaultMessage());
+					Assert.fail(validator.getErrors().get(key)
+							.getDefaultMessage());
 				}
-				
+
 			}
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			MatcherAssert.assertThat(e, Matchers.equalTo(null));// we expect that object e = null or there is no exception value
+			MatcherAssert.assertThat(e, Matchers.equalTo(null));// we expect
+																// that object e
+																// = null or
+																// there is no
+																// exception
+																// value
 		}
 	}
-	
+
 	@Test
-	public void b_testFindAll(){
+	public void b_testFindAll() {
 		try {
-			List<EmployeeGroup> listGroup = service.findAll(new EmployeeGroup());
+			List<EmployeeGroup> listGroup = service
+					.findAll(new EmployeeGroup());
 			MatcherAssert.assertThat(listGroup.size(), Matchers.greaterThan(0));
 		} catch (Exception e) {
 			e.printStackTrace();
-			MatcherAssert.assertThat(e, Matchers.equalTo(null));// we expect that object e = null or there is no exception value
+			MatcherAssert.assertThat(e, Matchers.equalTo(null));// we expect
+																// that object e
+																// = null or
+																// there is no
+																// exception
+																// value
 		}
 	}
-	
+
 	@Test
-	public void c_testFindById(){
+	public void c_testFindById() {
 		try {
 			EmployeeGroup param = new EmployeeGroup();
 			param.setId(165L);
-			
+
 			EmployeeGroup data = service.getById(param);
-			
 			if(data == null){
 				Assert.fail("Employee Group not found , or you have not change paramter id");
 			}
 			System.out.println(data.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
-			MatcherAssert.assertThat(e, Matchers.equalTo(null));// we expect that object e = null or there is no exception value
+			MatcherAssert.assertThat(e, Matchers.equalTo(null));// we expect
+																// that object e
+																// = null or
+																// there is no
+																// exception
+																// value
 		}
 	}
-	
+
 	@Test
-	public void d_update(){
+	public void d_update() {
 		try {
 			validator.validateEdit(dataEdit);
-			if(!validator.hasError()){
+			if (!validator.hasError()) {
 				service.insert(dataEdit);
-				//check inserted data
+				// check inserted data
 				EmployeeGroup updatedData = service.getByName(dataEdit);
-				MatcherAssert.assertThat(updatedData.getName(), Matchers.equalTo(dataEdit.getName()));
-				MatcherAssert.assertThat(updatedData.getDescription(), Matchers.equalTo(dataEdit.getDescription()));
-				MatcherAssert.assertThat(updatedData.getDescriptionEn(), Matchers.equalTo(dataEdit.getDescriptionEn()));
-			}else{
-				//show in junit error
+				MatcherAssert.assertThat(updatedData.getName(),
+						Matchers.equalTo(dataEdit.getName()));
+				MatcherAssert.assertThat(updatedData.getDescription(),
+						Matchers.equalTo(dataEdit.getDescription()));
+				MatcherAssert.assertThat(updatedData.getDescriptionEn(),
+						Matchers.equalTo(dataEdit.getDescriptionEn()));
+			} else {
+				// show in junit error
 				for (String key : validator.getErrors().keySet()) {
-					Assert.fail(validator.getErrors().get(key).getDefaultMessage());
+					Assert.fail(validator.getErrors().get(key)
+							.getDefaultMessage());
 				}
-				
+
 			}
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			MatcherAssert.assertThat(e, Matchers.equalTo(null));// we expect that object e = null or there is no exception value
+			MatcherAssert.assertThat(e, Matchers.equalTo(null));// we expect
+																// that object e
+																// = null or
+																// there is no
+																// exception
+																// value
 		}
 	}
-	
+
 	@Test
-	public void e_softDelete(){
+	public void e_softDelete() {
 		try {
 			EmployeeGroup dataDelete = new EmployeeGroup();
 			dataDelete.setId(171L);
-			
+
 			service.softDelete(dataDelete);
-			
+
 			EmployeeGroup group = service.getById(dataDelete);
-			if(group != null){
+			if (group != null) {
 				Assert.fail("Delete data failed");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			MatcherAssert.assertThat(e, Matchers.equalTo(null));// we expect that object e = null or there is no exception value
+			MatcherAssert.assertThat(e, Matchers.equalTo(null));// we expect
+																// that object e
+																// = null or
+																// there is no
+																// exception
+																// value
 		}
 	}
-	
+
 	@After
+
 	public void finaly(){
 		//service.closeDB();
 	}
-	
+
 }
